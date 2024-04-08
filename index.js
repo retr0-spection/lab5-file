@@ -8,6 +8,11 @@ app.use(express.json());
 
 const cars = require('./cars.json');
 
+app.use(function (req, res, next) {
+    // Allow access request from any computers
+    res.header("Access-Control-Allow-Origin", "*");
+})
+
 //get all cars
 app.get('/cars', (req, res) => {
     res.json(cars);
