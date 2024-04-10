@@ -11,6 +11,7 @@ const cars = require('./cars.json');
 app.use(function (req, res, next) {
     // Allow access request from any computers
     res.header("Access-Control-Allow-Origin", "*");
+    next()
 })
 
 //get all cars
@@ -52,6 +53,6 @@ app.post('/api/cars', (req, res) => {
 });
 
 //start app at localhost:3001
-app.listen(3000, () => {
+app.listen(80, () => {
     console.log('Server started at ' + process.env.PORT);
 });
