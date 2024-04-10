@@ -16,6 +16,7 @@ app.use(function (req, res, next) {
 
 //get all cars
 app.get('/api/cars', (req, res) => {
+    res.statusCode = 200
     res.json(cars);
 });
 
@@ -23,6 +24,8 @@ app.get('/api/cars', (req, res) => {
 app.get('/api/cars/:id', (req, res) => {
     const id = req.params.id;
     const car = cars.find(car => car.id === id);
+    res.statusCode = 200
+
     res.json(car);
 });
 
@@ -32,6 +35,8 @@ app.put('/api/cars/:id', (req, res) => {
     const updatedCar = req.body;
     const index = cars.findIndex(car => car.id === id);
     cars[index] = updatedCar;
+    res.statusCode = 200
+
     res.json(updatedCar);
 });
 
@@ -40,6 +45,8 @@ app.delete('/api/cars/:id', (req, res) => {
     const id = req.params.id;
     const index = cars.findIndex(car => car.id === id);
     cars.splice(index, 1);
+    res.statusCode = 200
+
     res.json({ message: `Car with id ${id} deleted` });
 });
 
@@ -49,10 +56,11 @@ app.post('/api/cars', (req, res) => {
     const newCar = req.body;
     console.log(newCar);
     cars.push(newCar);
+    res.statusCode = 200
     res.json(newCar);
 });
 
 //start app at localhost:3001
-app.listen(80, () => {
+app.listen(3001, () => {
     console.log('Server started at ' + process.env.PORT);
 });
